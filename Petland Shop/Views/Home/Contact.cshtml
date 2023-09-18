@@ -1,0 +1,104 @@
+﻿@model Petland_Shop.ModelViews.ContactViewModel
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Begin Main Content Area -->
+<main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/banner/2-1-1920x523.jpg">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-item">
+                        <h2 class="breadcrumb-heading">Contact Us</h2>
+                        <ul>
+                            <li>
+                                <a href="index.html">Home <i class="pe-7s-angle-right"></i></a>
+                            </li>
+                            <li>Contact</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Begin Shipping Area -->
+    <div class="shipping-area section-space-y-axis-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="shipping-item">
+                        <div class="shipping-img">
+                            <img src="~/assets/images/shipping/icon/plane.png" alt="Shipping Icon">
+                        </div>
+                        <div class="shipping-content">
+                            <h5 class="title">Giao hàng miễn phí</h5>
+                            <p class="short-desc mb-0">Với đơn hàng từ 500k</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pt-6 pt-md-0">
+                    <div class="shipping-item">
+                        <div class="shipping-img">
+                            <img src="~/assets/images/shipping/icon/earphones.png" alt="Shipping Icon">
+                        </div>
+                        <div class="shipping-content">
+                            <h5 class="title">Hỗ trợ 24/7</h5>
+                            <p class="short-desc mb-0">Hotline: 0963102916</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 pt-6 pt-lg-0">
+                    <div class="shipping-item">
+                        <div class="shipping-img">
+                            <img src="~/assets/images/shipping/icon/shield.png" alt="Shipping Icon">
+                        </div>
+                        <div class="shipping-content">
+                            <h5 class="title">Giờ làm việc</h5>
+                            <p class="short-desc mb-0">Từ 6h00 - 19h30 hàng ngày</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shipping Area End Here -->
+
+    <div class="contact-with-map">
+        <div class="contact-map-size">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.225292268476!2d106.7000207!3d10.8275392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528f4a62fce9b%3A0xc99902aa1e26ef02!2sVan%20Lang%20University%20-%20Campus%203!5e0!3m2!1sen!2sbd!4v1613802584124!5m2!1sen!2sbd"
+                    allowfullscreen=""
+                    loading="lazy"
+                    style="border: 0; width: 100%; height: 400px;"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+
+        <div class="contact-form-area section-space-bottom-100">
+            <div class="container">
+                <div class="contact-form-wrap">
+                    <form id="contact-form" class="contact-form" asp-action="Contact" method="post">
+                        <h4 class="contact-form-title pb-2 mb-7">Hãy Liên Hệ Ngay</h4>
+                        <div class="form-field">
+                            <input type="text" asp-for="Name" placeholder="Name*" class="input-field">
+                        </div>
+                        <div class="form-field mt-6">
+                            <input type="email" asp-for="Email" placeholder="Email*" class="input-field">
+                        </div>
+                        <div class="form-field mt-6">
+                            <textarea asp-for="Note" placeholder="Message" class="textarea-field"></textarea>
+                        </div>
+                        <div class="button-wrap mt-8">
+                            <button type="submit" class="btn btn btn-custom-size lg-size btn-primary btn-secondary-hover rounded-0">Gửi Ngay</button>
+                        </div>
+                        <p class="form-messege mt-3 mb-0"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Main Content Area End Here -->

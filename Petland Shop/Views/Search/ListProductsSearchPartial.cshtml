@@ -1,0 +1,33 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<Petland_Shop.Models.Product>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        string url = $"/{item.Alias}-{item.ProductId}.html";
+        <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+                <div class="product-img img-zoom-effect">
+                    <a href="@url">
+                        <img class="img-full" src="~/images/products/@item.Thumb" alt="@item.Title">
+                    </a>
+                    <div class="product-add-action">
+                        <ul>
+                            <li>
+                                <a href="@url">
+                                    <i class="pe-7s-cart"></i>
+                                </a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <a class="product-name" href="@url">@item.ProductName</a>
+                    <div class="price-box pb-1">
+                        <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    }
+}

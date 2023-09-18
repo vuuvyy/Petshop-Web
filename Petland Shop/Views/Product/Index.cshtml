@@ -1,0 +1,227 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<Petland_Shop.Models.Product>
+@{
+    ViewData["TiTle"] = "Shop - " + ViewBag.CurrentPage;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int PageCurrent = ViewBag.CurrentPage;
+    int PageNext = PageCurrent + 1;
+}
+<!-- Begin Main Content Area -->
+<main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/banner/2-1-1920x523.jpg">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-item">
+                        <h1 class="breadcrumb-heading">Petland Shop</h1>
+                        <ul>
+                            <li>
+                                <a href="/">Home <i class="pe-7s-angle-right"></i></a>
+                            </li>
+                            <li>DANH SÁCH SẢN PHẨM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-area section-space-y-axis-100">
+        <div class="container" >
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-affix m-v-10">
+                                <i class="prefix-icon anticon anticon-search opacity-04"></i>
+                                <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-affix m-v-10">
+                                <select class="custom-select" id="txtCatID" name="txtCatID" style="min-width: 200px;" asp-items="ViewBag.DanhMuc">
+                                    <option selected>Chọn danh mục</option>
+                                    <option value="0">Chọn tất cả</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-15 order-lg-2 order-1">
+                    <div class="product-topbar">
+                        <ul>
+                            <li class="product-view-wrap">
+                                <ul class="nav" role="tablist">
+                                    <li class="grid-view" role="presentation">
+                                        <a id="grid-view-tab" data-bs-toggle="tab" href="#grid-view" role="tab" aria-selected="true">
+                                            <i class="fa fa-th"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-view" role="presentation">
+                                        <a class="active" id="list-view-tab" data-bs-toggle="tab" href="#list-view" role="tab" aria-selected="true">
+                                            <i class="fa fa-th-list"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                           
+                        </ul>
+                    </div>
+                    @*Do san pham tu database vao trang*@
+                    <div class="tab-content text-charcoal pt-8">
+                        <div class="tab-pane fade" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
+                            <div id="records_table" class="product-grid-view row">
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        string url = $"/{item.Alias}-{item.ProductId}.html";
+                                        <div class="col-lg-4 col-sm-6">
+                                            <div class="product-item">
+                                                <div class="product-img img-zoom-effect">
+                                                    <a href="@url">
+                                                        <img class="img-full" src="~/images/products/@item.Thumb" alt="@item.Title">
+                                                    </a>
+                                                    <div class="product-add-action">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="@url">
+                                                                    <i class="pe-7s-cart"></i>
+                                                                </a>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product-content">
+                                                    <a class="product-name" href="@url">@item.ProductName</a>
+                                                    <div class="price-box pb-1" >
+                                                        <span class="new-price" style="color:blue">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                                    </div>
+                                                    @*<div class="rating-box">
+                                                        <ul>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                        </ul>
+                                                    </div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="list-view" role="tabpanel" aria-labelledby="list-view-tab">
+                            <div class="product-list-view with-sidebar row">
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        string url = $"/{item.Alias}-{item.ProductId}.html";
+                                        <div class="col-12 pt-6">
+                                            <div class="product-item">
+                                                <div class="product-img img-zoom-effect">
+                                                    <a href="@url">
+                                                        <img class="img-full" src="~/images/products/@item.Thumb" alt="@item.Title">
+                                                    </a>
+                                                    <div class="product-add-action">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="@url">
+                                                                    <i class="pe-7s-cart"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product-content align-self-center">
+                                                    <a class="product-name pb-2" href="@url">@item.ProductName</a>
+                                                    <div class="price-box pb-1">
+                                                        <span class="new-price">@item.Price.Value.ToString("#,##0") VNĐ</span>
+                                                    </div>
+                                                    @*<div class="rating-box pb-2">
+                                                        <ul>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                            <li><i class="pe-7s-star"></i></li>
+                                                        </ul>
+                                                    </div>*@
+                                                    <p class="short-desc mb-0">@item.ShortDesc</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination-area pt-10">
+                        <ul class="pagination justify-content-center">
+                            <pager class="pager-container" list="@Model" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" asp-area="" asp-controller="Product" asp-action="Index" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Main Content Area End Here -->
+
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            jQuery("#txtCatID").change(function () {
+                var catID = jQuery(this).children(":selected").attr("value");
+                catID = parseFloat(catID);
+                $('#txtCatID option')
+                    .removeAttr('selected');
+                $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
+                $.ajax({
+                    url: '/Product/Filtter',
+                    datatype: "json",
+                    type: "GET",
+                    data: {
+                        CatID: catID
+                    },
+                    async: true,
+                    success: function (results) {
+                        if (results.status == "success") {
+                            window.location.href = results.redirectUrl;
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+
+            $("#keyword").keyup(function () {
+                var strkeyword = $('#keyword').val();
+                $.ajax({
+                    url: '/Search/FindProduct/',
+                    datatype: "json",
+                    type: "POST",
+                    data: { keyword: strkeyword },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+
+}
